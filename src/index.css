@@ -143,6 +143,7 @@ body {
 .auth-form h1 {
   margin: 0 0 1.5rem;
   font-size: 1.5rem;
+  color:#1e40af
 }
 
 .auth-form label {
@@ -234,11 +235,13 @@ body {
 
 .btn-logout {
   padding: 0.5rem 1rem;
-  background: transparent;
-  border: 1px solid #d1d1d6;
+  background: white;
+  border: 1px solid #6b7280;
   border-radius: 8px;
   cursor: pointer;
   font-size: 0.875rem;
+  color: #1a1a1a;
+  font-weight: 600;
 }
 
 /* ── Summary strip ── */
@@ -296,6 +299,8 @@ body {
   border: 1px solid #d1d1d6;
   border-radius: 8px;
   font-size: 0.95rem;
+  background: white;
+  color: #1a1a1a;
 }
 
 .search-form button {
@@ -315,6 +320,7 @@ body {
   font-size: 0.95rem;
   background: white;
   cursor: pointer;
+  color: #1a1a1a;
 }
 
 /* ── Task list ── */
@@ -418,4 +424,108 @@ body {
   text-align: center;
   color: #6b7280;
   padding: 2rem;
+}
+
+/* ── Task form modal ── */
+.task-form-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+
+.task-form {
+  background: white;
+  border-radius: 12px;
+  padding: 2rem;
+  width: 100%;
+  max-width: 460px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+}
+
+.task-form h2 {
+  margin: 0 0 0.75rem;
+  color:#1e40af;
+}
+
+.task-form label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin-top: 0.5rem;
+}
+
+.task-form input,
+.task-form textarea,
+.task-form select {
+  padding: 0.6rem 0.75rem;
+  border: 1.5px solid #d1d1d6;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  background: white;
+  color: #1a1a1a;
+  font-family: inherit;
+}
+
+.task-form-actions {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.task-form-actions button[type="submit"] {
+  flex: 1;
+  padding: 0.7rem;
+  background: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 0.95rem;
+}
+
+.task-form-actions button[type="submit"]:disabled {
+  background: #93c5fd;
+  cursor: not-allowed;
+}
+
+.btn-cancel {
+  flex: 1;
+  padding: 0.7rem;
+  background: white;
+  border: 1.5px solid #6b7280;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 0.95rem;
+  color: #1a1a1a;
+}
+
+/* ── Edit button + Create button ── */
+.btn-edit {
+  padding: 0.4rem 0.75rem;
+  background: transparent;
+  color: #2563eb;
+  border: 1px solid #2563eb;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.8rem;
+}
+
+.btn-create {
+  padding: 0.6rem 1rem;
+  background: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 0.95rem;
+  white-space: nowrap;
 }

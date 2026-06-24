@@ -1,39 +1,30 @@
-/**
- * Dashboard page — the main task management interface.
- *
- * Features:
- *  - Summary strip (total/pending/in_progress/done counts)
- *  - Filter bar (status, priority, search)
- *  - Paginated task list
- *  - Create task button (opens inline form — built in Phase 6)
- */
-
 import { useEffect, useState } from "react";
 import { getTasks, getTaskSummary, deleteTask } from "../api/tasksApi";
 import { useAuth } from "../context/AuthContext";
 import Pagination from "../components/Pagination";
+import TaskCard from "../components/TaskCard";
+import TaskForm from "../components/TaskForm";
 
 function DashboardPage() {
   const { user, logout } = useAuth();
 
-  // ── Task data ──────────────────────────────────────────────────
   const [tasks, setTasks] = useState([]);
   const [summary, setSummary] = useState(null);
   const [total, setTotal] = useState(0);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
-  // ── Filters ────────────────────────────────────────────────────
   const [status, setStatus] = useState("");
   const [priority, setPriority] = useState("");
   const [search, setSearch] = useState("");
   const [searchInput, setSearchInput] = useState("");
 
-  // ── Pagination ─────────────────────────────────────────────────
   const [page, setPage] = useState(1);
   const pageSize = 10;
 
-  // ── Fetch tasks ────────────────────────────────────────────────
+  // null = closed, "create" = new task form, task object = edit form
+  const [formState, setFormState] = useState(null);
+
   async function fetchTasks() {
     setLoading(true);
     setError("");
@@ -52,9 +43,7 @@ function DashboardPage() {
     try {
       const data = await getTaskSummary();
       setSummary(data);
-    } catch {
-      // Non-critical — summary strip is just decorative
-    }
+    } catch {}
   }
 
   useEffect(() => {
@@ -63,9 +52,8 @@ function DashboardPage() {
 
   useEffect(() => {
     fetchSummary();
-  }, [tasks]); // Re-fetch summary whenever task list changes
+  }, [tasks]);
 
-  // ── Handlers ───────────────────────────────────────────────────
   function handleSearchSubmit(e) {
     e.preventDefault();
     setSearch(searchInput);
@@ -90,7 +78,12 @@ function DashboardPage() {
     }
   }
 
-  // ── Render ─────────────────────────────────────────────────────
+  function handleFormSuccess() {
+    setFormState(null);
+    fetchTasks();
+    fetchSummary();
+  }
+
   return (
     <div className="page">
 
@@ -130,7 +123,7 @@ function DashboardPage() {
         </div>
       )}
 
-      {/* ── Filter bar ── */}
+      {/* ── Filter bar + Create button ── */}
       <div className="filter-bar">
         <form onSubmit={handleSearchSubmit} className="search-form">
           <input
@@ -155,9 +148,15 @@ function DashboardPage() {
           <option value="medium">Medium</option>
           <option value="high">High</option>
         </select>
+
+        <button
+          className="btn-create"
+          onClick={() => setFormState("create")}
+        >
+          + New Task
+        </button>
       </div>
 
-      {/* ── Error ── */}
       {error && <p className="error-message">{error}</p>}
 
       {/* ── Task list ── */}
@@ -168,41 +167,31 @@ function DashboardPage() {
       ) : (
         <ul className="task-list">
           {tasks.map((task) => (
-            <li key={task.id} className="task-item">
-              <div className="task-info">
-                <span className="task-title">{task.title}</span>
-                <div className="task-meta">
-                  <span className={`badge status-${task.status}`}>
-                    {task.status.replace("_", " ")}
-                  </span>
-                  <span className={`badge priority-${task.priority}`}>
-                    {task.priority}
-                  </span>
-                </div>
-                {task.description && (
-                  <p className="task-description">{task.description}</p>
-                )}
-              </div>
-              <div className="task-actions">
-                <button
-                  className="btn-delete"
-                  onClick={() => handleDelete(task.id)}
-                >
-                  Delete
-                </button>
-              </div>
-            </li>
+            <TaskCard
+              key={task.id}
+              task={task}
+              onEdit={(t) => setFormState(t)}
+              onDelete={handleDelete}
+            />
           ))}
         </ul>
       )}
 
-      {/* ── Pagination ── */}
       <Pagination
         page={page}
         pageSize={pageSize}
         total={total}
         onPageChange={setPage}
       />
+
+      {/* ── Task form modal ── */}
+      {formState !== null && (
+        <TaskForm
+          task={formState === "create" ? null : formState}
+          onSuccess={handleFormSuccess}
+          onCancel={() => setFormState(null)}
+        />
+      )}
     </div>
   );
 }
