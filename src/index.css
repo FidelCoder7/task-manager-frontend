@@ -529,3 +529,69 @@ body {
   font-size: 0.95rem;
   white-space: nowrap;
 }
+
+/* ── Admin sections ── */
+.admin-section {
+  margin-bottom: 2.5rem;
+}
+
+.admin-section h2 {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+.section-count {
+  color: #6b7280;
+  font-weight: 400;
+  font-size: 1rem;
+}
+
+/* ── Admin table ── */
+.admin-table-wrapper {
+  overflow-x: auto;
+  border-radius: 10px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+}
+
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  font-size: 0.9rem;
+}
+
+.admin-table th {
+  text-align: left;
+  padding: 0.75rem 1rem;
+  background: #f9fafb;
+  border-bottom: 1px solid #e5e7eb;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #6b7280;
+}
+
+.admin-table td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid #f3f4f6;
+  color: #1a1a1a;
+}
+
+.admin-table tr:last-child td {
+  border-bottom: none;
+}
+
+.admin-table tr:hover td {
+  background: #f9fafb;
+}
+
+/* ── Role badge ── */
+.role-admin {
+  background: #ede9fe;
+  color: #5b21b6;
+}
+
+.role-user {
+  background: #f3f4f6;
+  color: #374151;
+}
