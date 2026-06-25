@@ -14,7 +14,11 @@ consuming the [Task Manager Auth API](https://github.com/FidelCoder7/task-manage
 
 ## Tech Stack
 
-React · Vite · React Router · axios · plain CSS
+* React 
+* Vite 
+* React Router
+* axios 
+* plain CSS
 
 ## Quick Start
 
