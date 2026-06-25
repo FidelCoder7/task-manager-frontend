@@ -595,3 +595,79 @@ body {
   background: #f3f4f6;
   color: #374151;
 }
+
+/* ── Navbar ── */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2rem;
+  height: 60px;
+  background: white;
+  border-bottom: 1px solid #e5e7eb;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+}
+
+.navbar-brand {
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: #1a1a1a;
+  letter-spacing: -0.02em;
+}
+
+.navbar-links {
+  display: flex;
+  gap: 0.25rem;
+}
+
+.nav-link {
+  padding: 0.4rem 0.85rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #4b5563;
+  transition: background 0.15s;
+}
+
+.nav-link:hover {
+  background: #f3f4f6;
+  color: #1a1a1a;
+}
+
+.nav-link-active {
+  background: #eff6ff;
+  color: #2563eb;
+}
+
+.navbar-user {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.navbar-username {
+  font-size: 0.9rem;
+  color: #4b5563;
+  font-weight: 500;
+}
+
+/* ── Page title ── */
+.page-title {
+  margin: 0 0 1.5rem;
+  font-size: 1.5rem;
+}
+
+/* ── General polish ── */
+.page {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+}
+
+a {
+  color: #2563eb;
+}

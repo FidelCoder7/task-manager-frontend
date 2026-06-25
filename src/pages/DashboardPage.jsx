@@ -6,7 +6,7 @@ import TaskCard from "../components/TaskCard";
 import TaskForm from "../components/TaskForm";
 
 function DashboardPage() {
-  const { user, logout } = useAuth();
+  const { user } = useAuth();
 
   const [tasks, setTasks] = useState([]);
   const [summary, setSummary] = useState(null);
@@ -88,18 +88,7 @@ function DashboardPage() {
     <div className="page">
 
       {/* ── Header ── */}
-      <header className="dashboard-header">
-        <div>
-          <h1>My Tasks</h1>
-          <p className="welcome">Welcome, {user?.username}</p>
-        </div>
-        <div className="header-actions">
-          {user?.role === "admin" && (
-            <a href="/admin" className="admin-link">Admin Panel</a>
-          )}
-          <button className="btn-logout" onClick={logout}>Log Out</button>
-        </div>
-      </header>
+      <h1 className="page-title">My Tasks</h1>
 
       {/* ── Summary strip ── */}
       {summary && (

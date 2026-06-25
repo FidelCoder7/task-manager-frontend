@@ -12,7 +12,7 @@ import { useAuth } from "../context/AuthContext";
 import Pagination from "../components/Pagination";
 
 function AdminPage() {
-  const { user, logout } = useAuth();
+  const { user } = useAuth();
 
   // ── Users ──────────────────────────────────────────────────────
   const [users, setUsers] = useState([]);
@@ -61,16 +61,7 @@ function AdminPage() {
     <div className="page">
 
       {/* ── Header ── */}
-      <header className="dashboard-header">
-        <div>
-          <h1>Admin Panel</h1>
-          <p className="welcome">Logged in as {user?.username}</p>
-        </div>
-        <div className="header-actions">
-          <a href="/dashboard" className="admin-link">My Tasks</a>
-          <button className="btn-logout" onClick={logout}>Log Out</button>
-        </div>
-      </header>
+      <h1 className="page-title">Admin Panel</h1>
 
       {/* ── Users section ── */}
       <section className="admin-section">

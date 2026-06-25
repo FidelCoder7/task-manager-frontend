@@ -1,16 +1,62 @@
-# React + Vite
+# Task Manager Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A React single-page application for managing personal tasks, 
+consuming the [Task Manager Auth API](https://github.com/FidelCoder7/task-manager-auth).
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- Register and log in with JWT authentication
+- Session persistence — refreshing the page keeps you logged in
+- Task dashboard: create, edit, delete, filter by status/priority, search
+- Paginated task list with summary strip (total/pending/in-progress/done)
+- Role-based UI — admin users see an Admin Panel with all users and all tasks
+- Clean, responsive interface
 
-## React Compiler
+## Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+React · Vite · React Router · axios · plain CSS
 
-## Expanding the ESLint configuration
+## Quick Start
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```bash
+npm install
+cp .env.example .env    # set VITE_API_URL=http://localhost:8000
+npm run dev
+```
+
+Make sure the backend API is running first:
+```bash
+# In task-manager-auth/
+uvicorn app.main:app --reload
+```
+
+## Pages
+
+| Route | Access | Description |
+|-------|--------|-------------|
+| `/login` | Public | Login form |
+| `/register` | Public | Registration form |
+| `/dashboard` | Authenticated | Task management |
+| `/admin` | Admin only | All users + all tasks |
+
+## Project Structure
+
+src/
+
+├── api/           # axios client, authApi, tasksApi
+
+├── context/       # AuthContext (global auth state)
+
+├── components/    # Navbar, TaskCard, TaskForm, Pagination, ProtectedRoute, AdminRoute
+
+└── pages/         # LoginPage, RegisterPage, DashboardPage, AdminPage
+
+
+## Related Projects
+
+- [Auth System](https://github.com/FidelCoder7/auth-system)
+- [Task Manager REST API](https://github.com/FidelCoder7/task-manager-auth)
+
+## License
+
+MIT
