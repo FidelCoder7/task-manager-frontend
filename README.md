@@ -64,3 +64,9 @@ src/
 ## License
 
 MIT
+
+## Live Demo:
+ https://task-manager-frontend-iota-jet.vercel.app  
+
+ ## Backend API:
+  https://task-manager-auth-production.up.railway.app/docs
