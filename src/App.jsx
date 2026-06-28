@@ -10,7 +10,15 @@ import { useAuth } from "./context/AuthContext";
 
 function Layout({ children }) {
   const { isAuthenticated, loading } = useAuth();
-  if (loading) return null;
+
+  if (loading) {
+    return (
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "center", minHeight: "100vh" }}>
+        <p style={{ color: "#6b7280" }}>Loading...</p>
+      </div>
+    );
+  }
+
   return (
     <>
       {isAuthenticated && <Navbar />}
@@ -48,23 +56,6 @@ function App() {
         </Routes>
       </Layout>
     </BrowserRouter>
-  );
-}
-
-function Layout({ children }) {
-  const { isAuthenticated, loading } = useAuth();
-  if (loading) {
-    return (
-      <div style={{ display: "flex", alignItems: "center", justifyContent: "center", minHeight: "100vh" }}>
-        <p style={{ color: "#6b7280" }}>Loading...</p>
-      </div>
-    );
-  }
-  return (
-    <>
-      {isAuthenticated && <Navbar />}
-      {children}
-    </>
   );
 }
 
