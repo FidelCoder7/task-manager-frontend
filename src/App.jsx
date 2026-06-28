@@ -51,4 +51,21 @@ function App() {
   );
 }
 
+function Layout({ children }) {
+  const { isAuthenticated, loading } = useAuth();
+  if (loading) {
+    return (
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "center", minHeight: "100vh" }}>
+        <p style={{ color: "#6b7280" }}>Loading...</p>
+      </div>
+    );
+  }
+  return (
+    <>
+      {isAuthenticated && <Navbar />}
+      {children}
+    </>
+  );
+}
+
 export default App;
